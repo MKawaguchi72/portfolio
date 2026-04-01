@@ -711,6 +711,15 @@ footer p {
       <div class="work-card-link-hint">▸ noteで記事を読む ↗</div>
       <div class="work-number">03</div>
     </a>
+    <div class="work-card fade-in" onclick="openVideoModal()">
+      <div class="work-category">Video Production — Client Work</div>
+      <div class="work-title">〇〇部長 送別会メッセージ動画</div>
+      <div class="work-desc">
+        職場の上司の送別会に向けて制作した感謝メッセージ動画。依頼主の想いを丁寧にヒアリングし、心に残るシナリオ構成と映像演出で仕上げた納品作品。
+      </div>
+      <div class="work-card-link-hint">▸ クリックして動画を再生する</div>
+      <div class="work-number">04</div>
+    </div>
   </div>
 </section>
 
@@ -792,6 +801,21 @@ footer p {
   </div>
 </div>
 
+<!-- Modal for video -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeVideoModal()">&times;</button>
+    <div class="modal-category">Video Production — Client Work</div>
+    <div class="modal-title">〇〇部長 送別会メッセージ動画</div>
+    <div class="modal-body">
+      <video id="portfolioVideo" controls style="width:100%;margin-top:1rem;border:1px solid var(--border);">
+        <source src="video01.mp4" type="video/mp4">
+        お使いのブラウザは動画の再生に対応していません。
+      </video>
+    </div>
+  </div>
+</div>
+
 <script>
 // Scroll-triggered fade-in
 const observer = new IntersectionObserver((entries) => {
@@ -820,9 +844,28 @@ document.getElementById('articleModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 
+// Video modal functions
+function openVideoModal() {
+  document.getElementById('videoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+  document.getElementById('videoModal').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('portfolioVideo').pause();
+}
+
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) closeVideoModal();
+});
+
 // Close on Escape key
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') {
+    closeModal();
+    closeVideoModal();
+  }
 });
 </script>
 
