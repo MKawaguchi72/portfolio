@@ -720,6 +720,15 @@ footer p {
       <div class="work-card-link-hint">▸ クリックして動画を再生する</div>
       <div class="work-number">04</div>
     </div>
+    <div class="work-card fade-in" onclick="openShortVideoModal()">
+      <div class="work-category">Short Video — Original Content</div>
+      <div class="work-title">女子がもういいやってなるLINEの特徴６選</div>
+      <div class="work-desc">
+        恋愛・人間関係をテーマにしたオリジナルショート動画。女性が冷める瞬間をリサーチし、共感を呼ぶ構成・台本・編集まで一貫して制作。
+      </div>
+      <div class="work-card-link-hint">▸ クリックして動画を再生する</div>
+      <div class="work-number">05</div>
+    </div>
   </div>
 </section>
 
@@ -801,6 +810,21 @@ footer p {
   </div>
 </div>
 
+<!-- Modal for short video -->
+<div class="modal-overlay" id="shortVideoModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeShortVideoModal()">&times;</button>
+    <div class="modal-category">Short Video — Original Content</div>
+    <div class="modal-title">女子がもういいやってなるLINEの特徴６選</div>
+    <div class="modal-body">
+      <video id="shortVideo" controls style="width:100%;margin-top:1rem;border:1px solid var(--border);">
+        <source src="video02.mp4" type="video/mp4">
+        お使いのブラウザは動画の再生に対応していません。
+      </video>
+    </div>
+  </div>
+</div>
+
 <!-- Modal for video -->
 <div class="modal-overlay" id="videoModal">
   <div class="modal-content">
@@ -860,11 +884,28 @@ document.getElementById('videoModal').addEventListener('click', function(e) {
   if (e.target === this) closeVideoModal();
 });
 
+// Short video modal functions
+function openShortVideoModal() {
+  document.getElementById('shortVideoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeShortVideoModal() {
+  document.getElementById('shortVideoModal').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('shortVideo').pause();
+}
+
+document.getElementById('shortVideoModal').addEventListener('click', function(e) {
+  if (e.target === this) closeShortVideoModal();
+});
+
 // Close on Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeModal();
     closeVideoModal();
+    closeShortVideoModal();
   }
 });
 </script>
